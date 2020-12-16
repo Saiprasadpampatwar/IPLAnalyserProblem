@@ -19,6 +19,7 @@ public class IPLAnalyser {
 
     public static final String TOP_BATTING_AVG_FILE = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\TopBattingAvg.json";
     private static final String TOP_STRIKE_RATE_FILE = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\TopStrikeRate.json";
+    private static final String TOP_4S_6S_FILE = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\Top4s6s.json";
     public static List<IPLBatsmanStats> iplBatsmanStats;
     public static List<IPLBowlerStats> iplBowlerStats;
 
@@ -91,6 +92,26 @@ public class IPLAnalyser {
         Gson gson = new Gson();
         String json =gson.toJson(iplBatsmanStats);
         FileWriter fileWriter = new FileWriter(TOP_STRIKE_RATE_FILE);
+        fileWriter.write(json);
+        fileWriter.close();
+    }
+
+    public void sortingBasedOnMax6sAnd4s() throws IOException {
+        Comparator com = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                IPLBatsmanStats b1 = (IPLBatsmanStats)o1;
+                IPLBatsmanStats b2 = (IPLBatsmanStats)o2;
+                if((b1.getSixes()+b1.getFours())>(b2.getFours()+b2.getSixes()))
+                    return -3;
+                else
+                    return 3;
+            }
+        };
+        Collections.sort(iplBatsmanStats,com);
+        Gson gson = new Gson();
+        String json =gson.toJson(iplBatsmanStats);
+        FileWriter fileWriter = new FileWriter(TOP_4S_6S_FILE);
         fileWriter.write(json);
         fileWriter.close();
     }
