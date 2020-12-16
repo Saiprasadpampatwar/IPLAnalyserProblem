@@ -27,4 +27,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnBattingAverage();
         Assert.assertEquals("MS Dhoni",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnStrikingRates() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnStrikeRate();
+        Assert.assertEquals("Ishant Sharma",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+    }
 }
