@@ -35,4 +35,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnStrikeRate();
         Assert.assertEquals("Ishant Sharma",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnMaximum6sAnd4s() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnMax6sAnd4s();
+        Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+    }
 }
