@@ -151,4 +151,13 @@ public class IPLAnalyser {
         Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
         iplBowlerStatsList=iplBowlerStatsList.stream().filter(s->(s.getAverage()!=0)).collect(Collectors.toList());
     }
+
+    public void sortingBasedOnBowlerStrikeRate() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getStrikeRate);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+        iplBowlerStatsList.stream().forEach(s->{
+            System.out.println(s.getPlayer());
+            System.out.println(s.getStrikeRate());
+        });
+    }
 }
