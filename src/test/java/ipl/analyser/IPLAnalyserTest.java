@@ -136,4 +136,12 @@ public class IPLAnalyserTest {
         List<String> namesList = iplAnalyser.sortingBasedOnBestBattingAndBowlingAverage();
         Assert.assertEquals("Andre Russell",namesList.get(namesList.size()-1));
     }
+
+    @Test
+    public void sortingBasedOnMaxHundredsWithBestAvg() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnMaxHundredsWithBestAvg();
+        Assert.assertEquals("David Warner ",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
+    }
 }

@@ -221,4 +221,9 @@ public class IPLAnalyser {
         return newBowlerList;
 
     }
+
+    public void sortingBasedOnMaxHundredsWithBestAvg() {
+        Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingInt(IPLBatsmanStats::getCenturies).thenComparing(IPLBatsmanStats::getAverage);
+        Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
+    }
 }
