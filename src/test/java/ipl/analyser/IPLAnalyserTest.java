@@ -144,4 +144,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnMaxHundredsWithBestAvg();
         Assert.assertEquals("David Warner ",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnBestBattingAvgButZeroCenturiesOrFifties() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnBestBattingAvgButZeroCenturiesOrFifties();
+        Assert.assertEquals("Marcus Stoinis",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
+    }
 }

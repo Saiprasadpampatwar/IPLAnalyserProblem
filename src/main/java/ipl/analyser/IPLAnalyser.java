@@ -226,4 +226,12 @@ public class IPLAnalyser {
         Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingInt(IPLBatsmanStats::getCenturies).thenComparing(IPLBatsmanStats::getAverage);
         Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
     }
+
+    public void sortingBasedOnBestBattingAvgButZeroCenturiesOrFifties() {
+        Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingInt(IPLBatsmanStats::getCenturies).thenComparing(IPLBatsmanStats::getAverage);
+        Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
+        iplBatsmanStatsList=iplBatsmanStatsList.stream()
+                .filter(s->s.getFifties()==0 && s.getCenturies()==0)
+                .collect(Collectors.toList());
+    }
 }
