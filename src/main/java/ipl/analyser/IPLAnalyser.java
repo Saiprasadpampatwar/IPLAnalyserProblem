@@ -160,4 +160,14 @@ public class IPLAnalyser {
             System.out.println(s.getStrikeRate());
         });
     }
+
+    public void sortingBasedOnEconomy() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getEconomy);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+        iplBowlerStatsList=iplBowlerStatsList.stream().filter(s->(s.getEconomy()!=0)).collect(Collectors.toList());
+        iplBowlerStatsList.stream().forEach(s->{
+            System.out.println(s.getPlayer());
+            System.out.println(s.getEconomy());
+        });
+    }
 }
