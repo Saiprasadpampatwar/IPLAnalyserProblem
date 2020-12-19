@@ -43,4 +43,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnMax6sAnd4s();
         Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnMaximumStrikingRate6sAnd4s() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnMaxStrikingRate6sAnd4s();
+        Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+    }
 }

@@ -102,6 +102,7 @@ public class IPLAnalyser {
             public int compare(Object o1, Object o2) {
                 IPLBatsmanStats b1 = (IPLBatsmanStats)o1;
                 IPLBatsmanStats b2 = (IPLBatsmanStats)o2;
+
                 if((b1.getSixes()+b1.getFours())>(b2.getFours()+b2.getSixes()))
                     return -3;
                 else
@@ -114,5 +115,24 @@ public class IPLAnalyser {
         FileWriter fileWriter = new FileWriter(TOP_4S_6S_FILE);
         fileWriter.write(json);
         fileWriter.close();
+    }
+
+    public void sortingBasedOnMaxStrikingRate6sAnd4s() {
+        Comparator com = new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                IPLBatsmanStats b1 = (IPLBatsmanStats)o1;
+                IPLBatsmanStats b2 = (IPLBatsmanStats)o2;
+
+                if(((b1.getSixes()+b1.getFours())>(b2.getFours()+b2.getSixes())) && (b1.getStrikeRate()>b2.getStrikeRate()))
+                    return -3;
+                else
+                    return 3;
+            }
+        };
+        Collections.sort(iplBatsmanStats,com);
+
+
+
     }
 }
