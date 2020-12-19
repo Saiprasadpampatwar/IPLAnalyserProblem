@@ -89,6 +89,7 @@ public class IPLAnalyserTest {
         IPLAnalyser iplAnalyser = new IPLAnalyser();
         iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
         iplAnalyser.sortingBasedOnEconomy();
+
         Assert.assertEquals("Shivam Dube",IPLAnalyser.iplBowlerStatsList.get(0).getPlayer());
     }
 }
