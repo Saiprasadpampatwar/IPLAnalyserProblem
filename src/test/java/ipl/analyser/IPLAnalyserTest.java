@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 public class IPLAnalyserTest {
     public static final String BATSMAN_PATH = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv";
@@ -116,5 +117,14 @@ public class IPLAnalyserTest {
         iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
         iplAnalyser.sortingBasedOnMostWicketsAndAverage();
         Assert.assertEquals("Imran Tahir",IPLAnalyser.iplBowlerStatsList.get(IPLAnalyser.iplBowlerStatsList.size()-1).getPlayer());
+    }
+
+    @Test
+    public void sortingBasedOnBestBattingAndBowlingAverage() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
+        List<String> namesList = iplAnalyser.sortingBasedOnBestBattingAndBowlingAverage();
+        Assert.assertEquals("Andre Russell",namesList.get(namesList.size()-1));
     }
 }

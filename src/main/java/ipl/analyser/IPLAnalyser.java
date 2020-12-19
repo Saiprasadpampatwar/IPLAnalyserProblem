@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -184,5 +185,22 @@ public class IPLAnalyser {
         Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingInt(IPLBowlerStats::getWickets).thenComparing(IPLBowlerStats::getAverage);
         Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
 
+    }
+
+    public List<String> sortingBasedOnBestBattingAndBowlingAverage() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getAverage);
+        Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingDouble(IPLBatsmanStats::getAverage);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+        Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
+        List<String> newBowlerList = new ArrayList();
+        for(IPLBatsmanStats batsman: iplBatsmanStatsList){
+            for(IPLBowlerStats bowler: iplBowlerStatsList){
+                if(batsman.getPlayer().equals(bowler.getPlayer())){
+                    
+                    newBowlerList.add(bowler.getPlayer());
+                }
+            }
+        }
+        return newBowlerList;
     }
 }
