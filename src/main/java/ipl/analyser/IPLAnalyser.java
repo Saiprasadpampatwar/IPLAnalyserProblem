@@ -20,15 +20,16 @@ public class IPLAnalyser {
     public static final String TOP_BATTING_AVG_FILE = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\TopBattingAvg.json";
     private static final String TOP_STRIKE_RATE_FILE = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\TopStrikeRate.json";
     private static final String TOP_4S_6S_FILE = "C:\\Users\\saiprasad\\IdeaProjects\\IPLAnaluser\\IPLAnaluser\\src\\test\\resources\\Top4s6s.json";
-    public static List<IPLBatsmanStats> iplBatsmanStats;
-    public static List<IPLBowlerStats> iplBowlerStats;
+    public static List<IPLBatsmanStats> iplBatsmanStatsList;
+    public static List<IPLBowlerStats> iplBowlerStatsList;
+
 
     public int loadIplBatsmanStat(String csvFilePath) throws IPLAnalyserException {
         try(Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
         CSVReader csvReader = new CSVReader(reader);){
 
-            iplBatsmanStats = getCSVFileList(reader,IPLBatsmanStats.class);
-            return  iplBatsmanStats.size();
+            iplBatsmanStatsList = getCSVFileList(reader,IPLBatsmanStats.class);
+            return  iplBatsmanStatsList.size();
         } catch (IOException| RuntimeException e ) {
             throw new IPLAnalyserException(e.getMessage(),IPLAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
         }
@@ -39,8 +40,8 @@ public class IPLAnalyser {
         try(Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
             CSVReader csvReader = new CSVReader(reader);){
 
-            iplBowlerStats = getCSVFileList(reader,IPLBowlerStats.class);
-            return  iplBowlerStats.size();
+            iplBowlerStatsList = getCSVFileList(reader,IPLBowlerStats.class);
+            return  iplBowlerStatsList.size();
         } catch (IOException| RuntimeException e ) {
             throw new IPLAnalyserException(e.getMessage(),IPLAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
         }
@@ -68,9 +69,9 @@ public class IPLAnalyser {
                     return 3;
             }
         };
-        Collections.sort(iplBatsmanStats,com);
+        Collections.sort(iplBatsmanStatsList,com);
         Gson gson = new Gson();
-        String json =gson.toJson(iplBatsmanStats);
+        String json =gson.toJson(iplBatsmanStatsList);
         FileWriter fileWriter = new FileWriter(TOP_BATTING_AVG_FILE);
         fileWriter.write(json);
         fileWriter.close();
@@ -88,9 +89,9 @@ public class IPLAnalyser {
                     return 3;
             }
         };
-        Collections.sort(iplBatsmanStats,com);
+        Collections.sort(iplBatsmanStatsList,com);
         Gson gson = new Gson();
-        String json =gson.toJson(iplBatsmanStats);
+        String json =gson.toJson(iplBatsmanStatsList);
         FileWriter fileWriter = new FileWriter(TOP_STRIKE_RATE_FILE);
         fileWriter.write(json);
         fileWriter.close();
@@ -109,9 +110,9 @@ public class IPLAnalyser {
                     return 3;
             }
         };
-        Collections.sort(iplBatsmanStats,com);
+        Collections.sort(iplBatsmanStatsList,com);
         Gson gson = new Gson();
-        String json =gson.toJson(iplBatsmanStats);
+        String json =gson.toJson(iplBatsmanStatsList);
         FileWriter fileWriter = new FileWriter(TOP_4S_6S_FILE);
         fileWriter.write(json);
         fileWriter.close();
@@ -130,9 +131,12 @@ public class IPLAnalyser {
                     return 3;
             }
         };
-        Collections.sort(iplBatsmanStats,com);
+        Collections.sort(iplBatsmanStatsList,com);
+    }
 
 
-
+    public void sortingBasedOnTopAverageAlongWithStrikeRate() {
+        Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingDouble(IPLBatsmanStats::getAverage).thenComparing(IPLBatsmanStats::getStrikeRate);
+        Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
     }
 }

@@ -25,7 +25,7 @@ public class IPLAnalyserTest {
         IPLAnalyser iplAnalyser = new IPLAnalyser();
         iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
         iplAnalyser.sortingBasedOnBattingAverage();
-        Assert.assertEquals("MS Dhoni",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+        Assert.assertEquals("MS Dhoni",IPLAnalyser.iplBatsmanStatsList.get(0).getPlayer());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class IPLAnalyserTest {
         IPLAnalyser iplAnalyser = new IPLAnalyser();
         iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
         iplAnalyser.sortingBasedOnStrikeRate();
-        Assert.assertEquals("Ishant Sharma",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+        Assert.assertEquals("Ishant Sharma",IPLAnalyser.iplBatsmanStatsList.get(0).getPlayer());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class IPLAnalyserTest {
         IPLAnalyser iplAnalyser = new IPLAnalyser();
         iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
         iplAnalyser.sortingBasedOnMax6sAnd4s();
-        Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+        Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStatsList.get(0).getPlayer());
     }
 
     @Test
@@ -49,6 +49,14 @@ public class IPLAnalyserTest {
         IPLAnalyser iplAnalyser = new IPLAnalyser();
         iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
         iplAnalyser.sortingBasedOnMaxStrikingRate6sAnd4s();
-        Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStats.get(0).getPlayer());
+        Assert.assertEquals("Andre Russell",IPLAnalyser.iplBatsmanStatsList.get(0).getPlayer());
+    }
+
+    @Test
+    public void sortingBasedOnTopAverageAlongWithStrikeRate() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnTopAverageAlongWithStrikeRate();
+        Assert.assertEquals("MS Dhoni",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
     }
 }
