@@ -139,4 +139,9 @@ public class IPLAnalyser {
         Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingDouble(IPLBatsmanStats::getAverage).thenComparing(IPLBatsmanStats::getStrikeRate);
         Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
     }
+
+    public void sortingBasedOnopRunScoredWithMaxAverage() {
+        Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingInt(IPLBatsmanStats::getRuns).thenComparing(IPLBatsmanStats::getAverage);
+        Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
+    }
 }

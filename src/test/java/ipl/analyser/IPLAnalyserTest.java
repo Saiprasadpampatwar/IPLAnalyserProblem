@@ -59,4 +59,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnTopAverageAlongWithStrikeRate();
         Assert.assertEquals("MS Dhoni",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnTopRunScoredWithMaxAverage() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.sortingBasedOnopRunScoredWithMaxAverage();
+        Assert.assertEquals("David Warner ",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
+    }
 }
