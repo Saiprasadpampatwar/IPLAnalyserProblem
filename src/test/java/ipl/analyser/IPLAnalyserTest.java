@@ -127,4 +127,13 @@ public class IPLAnalyserTest {
         List<String> namesList = iplAnalyser.sortingBasedOnBestBattingAndBowlingAverage();
         Assert.assertEquals("Andre Russell",namesList.get(namesList.size()-1));
     }
+
+    @Test
+    public void sortingBasedOnAllrounder() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBatsmanStat(BATSMAN_PATH);
+        iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
+        List<String> namesList = iplAnalyser.sortingBasedOnBestBattingAndBowlingAverage();
+        Assert.assertEquals("Andre Russell",namesList.get(namesList.size()-1));
+    }
 }

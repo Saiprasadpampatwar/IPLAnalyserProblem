@@ -203,4 +203,22 @@ public class IPLAnalyser {
         }
         return newBowlerList;
     }
+
+    public List<String> sortingBasedOnAllRounders() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingInt(IPLBowlerStats::getRuns).thenComparing(IPLBowlerStats::getWickets);
+        Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingInt(IPLBatsmanStats::getRuns);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+        Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
+        List<String> newBowlerList = new ArrayList();
+        for(IPLBatsmanStats batsman: iplBatsmanStatsList){
+            for(IPLBowlerStats bowler: iplBowlerStatsList){
+                if(batsman.getPlayer().equals(bowler.getPlayer())){
+
+                    newBowlerList.add(bowler.getPlayer());
+                }
+            }
+        }
+        return newBowlerList;
+
+    }
 }
