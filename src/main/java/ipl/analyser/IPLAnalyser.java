@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class IPLAnalyser {
 
@@ -143,5 +144,11 @@ public class IPLAnalyser {
     public void sortingBasedOnopRunScoredWithMaxAverage() {
         Comparator<IPLBatsmanStats> iplBatsmanStatsComparator = Comparator.comparingInt(IPLBatsmanStats::getRuns).thenComparing(IPLBatsmanStats::getAverage);
         Collections.sort(iplBatsmanStatsList,iplBatsmanStatsComparator);
+    }
+
+    public void sortingBasedOnBowlingAverage() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getAverage);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+        iplBowlerStatsList=iplBowlerStatsList.stream().filter(s->(s.getAverage()!=0)).collect(Collectors.toList());
     }
 }

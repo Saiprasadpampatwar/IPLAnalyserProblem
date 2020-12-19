@@ -67,4 +67,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnopRunScoredWithMaxAverage();
         Assert.assertEquals("David Warner ",IPLAnalyser.iplBatsmanStatsList.get(IPLAnalyser.iplBatsmanStatsList.size()-1).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnBowlingAvarage() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
+        iplAnalyser.sortingBasedOnBowlingAverage();
+        Assert.assertEquals("Anukul Roy",IPLAnalyser.iplBowlerStatsList.get(0).getPlayer());
+    }
 }
