@@ -167,4 +167,11 @@ public class IPLAnalyser {
         iplBowlerStatsList=iplBowlerStatsList.stream().filter(s->(s.getEconomy()!=0)).collect(Collectors.toList());
 
     }
+
+    public void topStrikingRateWith5wAnd4w() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getStrikeRate).thenComparing(IPLBowlerStats::getFiveWicket).thenComparing(IPLBowlerStats::getFourWicket);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+        iplBowlerStatsList=iplBowlerStatsList.stream().filter(s->(s.getFiveWicket()!=0 || s.getFourWicket()!=0)).collect(Collectors.toList());
+
+    }
 }

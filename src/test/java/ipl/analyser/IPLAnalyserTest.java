@@ -92,4 +92,13 @@ public class IPLAnalyserTest {
 
         Assert.assertEquals("Shivam Dube",IPLAnalyser.iplBowlerStatsList.get(0).getPlayer());
     }
+
+    @Test
+    public void bowlerWithTopStrikingRateWith5wAnd4w() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
+        iplAnalyser.topStrikingRateWith5wAnd4w();
+
+        Assert.assertEquals("Alzarri Joseph",IPLAnalyser.iplBowlerStatsList.get(0).getPlayer());
+    }
 }
