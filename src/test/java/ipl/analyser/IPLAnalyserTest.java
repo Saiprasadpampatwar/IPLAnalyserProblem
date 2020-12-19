@@ -101,4 +101,12 @@ public class IPLAnalyserTest {
 
         Assert.assertEquals("Alzarri Joseph",IPLAnalyser.iplBowlerStatsList.get(0).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnBowlingAvgWithStrikeRateOfBowlers() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
+        iplAnalyser.sortingBasedOnBowlingAvgWithStrikeRate();
+        Assert.assertEquals("Krishnappa Gowtham",IPLAnalyser.iplBowlerStatsList.get(IPLAnalyser.iplBowlerStatsList.size()-1).getPlayer());
+    }
 }

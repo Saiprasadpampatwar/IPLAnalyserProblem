@@ -174,4 +174,9 @@ public class IPLAnalyser {
         iplBowlerStatsList=iplBowlerStatsList.stream().filter(s->(s.getFiveWicket()!=0 || s.getFourWicket()!=0)).collect(Collectors.toList());
 
     }
+
+    public void sortingBasedOnBowlingAvgWithStrikeRate() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getAverage).thenComparing(IPLBowlerStats::getStrikeRate);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+    }
 }
