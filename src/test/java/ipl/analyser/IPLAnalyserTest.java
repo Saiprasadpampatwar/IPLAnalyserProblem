@@ -109,4 +109,12 @@ public class IPLAnalyserTest {
         iplAnalyser.sortingBasedOnBowlingAvgWithStrikeRate();
         Assert.assertEquals("Krishnappa Gowtham",IPLAnalyser.iplBowlerStatsList.get(IPLAnalyser.iplBowlerStatsList.size()-1).getPlayer());
     }
+
+    @Test
+    public void sortingBasedOnMostWicketsAndAverage() throws IPLAnalyserException, IOException {
+        IPLAnalyser iplAnalyser = new IPLAnalyser();
+        iplAnalyser.loadIplBowlerStat(BOWLER_PATH);
+        iplAnalyser.sortingBasedOnMostWicketsAndAverage();
+        Assert.assertEquals("Imran Tahir",IPLAnalyser.iplBowlerStatsList.get(IPLAnalyser.iplBowlerStatsList.size()-1).getPlayer());
+    }
 }

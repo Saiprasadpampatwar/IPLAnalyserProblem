@@ -179,4 +179,10 @@ public class IPLAnalyser {
         Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingDouble(IPLBowlerStats::getAverage).thenComparing(IPLBowlerStats::getStrikeRate);
         Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
     }
+
+    public void sortingBasedOnMostWicketsAndAverage() {
+        Comparator<IPLBowlerStats> iplBowlerStatsComparator = Comparator.comparingInt(IPLBowlerStats::getWickets).thenComparing(IPLBowlerStats::getAverage);
+        Collections.sort(iplBowlerStatsList,iplBowlerStatsComparator);
+
+    }
 }
